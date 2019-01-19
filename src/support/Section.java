@@ -21,7 +21,8 @@ public class Section {
 		
 		if (course.getInstructorFilter() != null) {
 			valid = course.getInstructorFilter().contains(instructor);
-		} else if (course.getSectionFilter() != null) {
+		} 
+		if (course.getSectionFilter() != null) {
 			valid = course.getSectionFilter().contains(sectionId);
 		}
 	}
