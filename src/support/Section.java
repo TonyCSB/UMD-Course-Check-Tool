@@ -1,0 +1,96 @@
+package support;
+
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+public class Section {
+	private Course course;
+	private String sectionId;
+	private String instructor;
+	private int openSeat;
+	private int totalSeat;
+	private int waitlist;
+	private int holdfile;
+	private Boolean valid = true;
+	
+	public Section(Course course, String sectionId, Document sectionInfo) {
+		this.course = course;
+		this.sectionId = sectionId;
+		
+		getAllInfo(sectionInfo);
+		
+		if (course.getInstructorFilter() != null) {
+			valid = instructor.equals(course.getInstructorFilter());
+		} else if (course.getSectionFilter() != null) {
+			valid = course.getSectionFilter().contains(sectionId);
+		}
+	}
+	
+	private void getAllInfo(Document sectionInfo) {
+		instructor = sectionInfo.getElementsByClass("section-instructor").text();
+		totalSeat = Integer.parseInt(sectionInfo.getElementsByClass("total-seats-count").text());
+		openSeat = Integer.parseInt(sectionInfo.getElementsByClass("open-seats-count").text());
+		
+		Elements elements = sectionInfo.getElementsByClass("waitlist-count");
+		if (elements.size() == 2) {
+			waitlist = Integer.parseInt(elements.get(0).text());
+			holdfile = Integer.parseInt(elements.get(1).text());
+		} else {
+			waitlist = Integer.parseInt(elements.text());
+			holdfile = 0;
+		}
+	}
+	
+	public boolean equals(Object obj) { 
+		if (obj == this) { 
+			return true; 
+		} 
+		if (obj == null || getClass() != obj.getClass()) { 
+			return false; 
+		}
+		
+		Section section = (Section) obj;
+		
+		return course.equals(section.course) && sectionId.equals(section.sectionId);
+	}
+	
+	public String toString() {
+		return sectionId + ", " + instructor + ", " + getSeatCounts();
+	}
+	
+	public String getSeatCounts() {
+		return openSeat + "/" + totalSeat + ", " + waitlist + " " + holdfile;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public String getSectionId() {
+		return sectionId;
+	}
+
+	public String getInstructor() {
+		return instructor;
+	}
+
+	public int getOpenSeat() {
+		return openSeat;
+	}
+
+	public int getTotalSeat() {
+		return totalSeat;
+	}
+
+	public int getWaitlist() {
+		return waitlist;
+	}
+
+	public int getHoldfile() {
+		return holdfile;
+	}
+	
+	public Boolean isValid() {
+		return valid;
+	}
+}
