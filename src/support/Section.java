@@ -20,7 +20,7 @@ public class Section {
 		getAllInfo(sectionInfo);
 		
 		if (course.getInstructorFilter() != null) {
-			valid = instructor.equals(course.getInstructorFilter());
+			valid = course.getInstructorFilter().contains(instructor);
 		} else if (course.getSectionFilter() != null) {
 			valid = course.getSectionFilter().contains(sectionId);
 		}

@@ -17,34 +17,10 @@ public class Course {
 	private String deptId;
 	private String department;
 	private String gradingMethod;
-	private String instructorFilter = null;
+	private ArrayList<String> instructorFilter = null;
 	private ArrayList<String> sectionFilter = null;
 
-	public Course(String courseId, String semester, String instructor) {
-		this(courseId, semester);
-		instructorFilter = instructor;
-		update();
-	}
-
-	public Course(String courseId, String semester, ArrayList<String> section) {
-		this(courseId, semester);
-		sectionFilter = section;
-		update();
-	}
-
-	public Course(String courseId, int semester, String instructor) {
-		this(courseId, semester);
-		instructorFilter = instructor;
-		update();
-	}
-
-	public Course(String courseId, int semester, ArrayList<String> section) {
-		this(courseId, semester);
-		sectionFilter = section;
-		update();
-	}
-
-	public Course(String courseId, String semester) {
+	public Course(String courseId, String semester, Boolean update) {
 		if (!checkCouseId(courseId)) {
 			throw new IllegalArgumentException("Invalid Course ID!");
 		}
@@ -56,8 +32,26 @@ public class Course {
 		this.courseId = courseId.toUpperCase();
 		this.semester = semester;
 		this.deptId = courseId.substring(0, 4);
-		
-		update();
+
+		if (update == true) {
+			try {
+				getAllInfo();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void setInstructorFilter(ArrayList<String> instructorFilter) {
+		this.instructorFilter = instructorFilter;
+	}
+
+	public void setSectionFilter(ArrayList<String> sectionFilter) {
+		this.sectionFilter = sectionFilter;
+	}
+
+	public Course(String courseId, String semester) {
+		this(courseId, semester, true);
 	}
 
 	public Course(String courseId, int semester) {
@@ -185,7 +179,7 @@ public class Course {
 		return gradingMethod;
 	}
 
-	public String getInstructorFilter() {
+	public ArrayList<String> getInstructorFilter() {
 		return instructorFilter;
 	}
 
