@@ -1,6 +1,8 @@
 package support;
 
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -56,6 +58,34 @@ public class Course {
 
 	public Course(String courseId, int semester) {
 		this(courseId, Integer.toString(semester));
+	}
+	
+	public Course(String courseId) {
+		this(courseId, defaultSemester());
+	}
+	
+	private static String defaultSemester() {
+		String semester = "";
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		
+		if (month >= 1 && month < 5) {
+			month = 1;
+		} else if (month < 7) {
+			month = 5;
+		} else if (month < 12) {
+			month = 8;
+		}
+		
+		if (month < 10) {
+			semester = year + "0" + month;
+		} else {
+			semester = year + "" + month;
+		}
+		
+		return semester;
 	}
 
 	public String toString() {
@@ -204,8 +234,7 @@ public class Course {
 	}
 
 	public static void main(String[] args) {
-		Course course = new Course("RUSS289i", 201901);
-		System.out.println(course);
+		System.out.println(defaultSemester());
 	}
 
 }
