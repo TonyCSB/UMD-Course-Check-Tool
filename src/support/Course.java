@@ -1,6 +1,5 @@
 package support;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -23,6 +22,10 @@ public class Course {
 	private ArrayList<String> sectionFilter = null;
 
 	public Course(String courseId, String semester, Boolean update) {
+		if (semester == null) {
+			semester = defaultSemester();
+		}
+		
 		if (!checkCouseId(courseId)) {
 			throw new IllegalArgumentException("Invalid Course ID!");
 		}
@@ -89,8 +92,9 @@ public class Course {
 	}
 
 	public String toString() {
+		update();
 		return courseId + " Credits: " + credits + "\n" + "GenEd: " + genEd + "\n"
-				+ "Grading Methods: " + gradingMethod + "\n" + sections;
+				+ "Grading Methods: " + gradingMethod + "\n" + sections + "\n";
 	}
 
 	public String getCourseId() {
@@ -127,8 +131,8 @@ public class Course {
 		return true;
 	}
 
-	private static Boolean checkSemester(String semester) {
-		if (semester == null || semester.length() != 6) {
+	public static Boolean checkSemester(String semester) {
+		if (semester.length() != 6) {
 			return false;
 		}
 
@@ -217,12 +221,12 @@ public class Course {
 		return sectionFilter;
 	}
 
-	public boolean equals(Object obj) { 
-		if (obj == this) { 
-			return true; 
-		} 
-		if (obj == null || getClass() != obj.getClass()) { 
-			return false; 
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
 		}
 
 		Course course = (Course) obj;
