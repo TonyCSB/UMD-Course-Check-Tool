@@ -5,6 +5,8 @@ This tool is designed to check for course infomation and/or if any open seats av
 
 ### To-do list
 - [x] Finish Course/Section class
-- [ ] Finish CheckCourse Module
+- [x] Finish CheckCourse Module
 - [ ] Develop Background Module
-- [ ] GUI
+- [ ] GUI!
+- [ ] GUI!!
+- [ ] GUI!!!
