@@ -10,3 +10,5 @@ This tool is designed to check for course infomation and/or if any open seats av
 - [ ] GUI!
 - [ ] GUI!!
 - [ ] GUI!!!
+- [ ] Write Javadoc
+- [ ] More . . .
