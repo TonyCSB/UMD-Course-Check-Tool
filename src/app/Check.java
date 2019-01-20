@@ -1,16 +1,20 @@
 package app;
 
+import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import support.Course;
 
 public class Check {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void checkFromFile() throws FileNotFoundException {
 		String filePath = "src/support/index.txt";
 		String delimiter = ",";
 		String[] lineArray;
@@ -52,10 +56,27 @@ public class Check {
 		}
 
 		scanner.close();
-
-		for (Course c:courseList) {
-			System.out.println(c);
-		}
+	}
+	
+	public static void main(String[] args) {
+		JFrame win = new JFrame("Check Course");
+		win.setLocation(300, 300);
+		win.setSize(800, 800);
+		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		win.setLayout(new BorderLayout());
+		
+		JButton lastButton = new JButton("Last");
+		JButton nextButton = new JButton("Next");
+		JButton refreshButton = new JButton("Refresh");
+		JLabel title = new JLabel("Title");
+		
+		win.add(lastButton, BorderLayout.WEST);
+		win.add(nextButton, BorderLayout.EAST);
+		win.add(refreshButton, BorderLayout.SOUTH);
+		win.add(title, BorderLayout.NORTH);
+		
+		win.setVisible(true);
+		
 	}
 
 }
