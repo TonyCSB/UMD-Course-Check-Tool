@@ -18,7 +18,7 @@ import support.Course;
 
 public class Check {
 
-	public static void checkFromFile() throws FileNotFoundException {
+	public static ArrayList<Course> checkFromFile() throws FileNotFoundException {
 		String filePath = "src/support/index.txt";
 		String delimiter = ",";
 		String[] lineArray;
@@ -60,9 +60,11 @@ public class Check {
 		}
 
 		scanner.close();
+		
+		return courseList;
 	}
 	
-	public static void main(String[] args) {
+	public static void detailInfoGUI(ArrayList<Course> courseList) {
 		ArrayList<JButton> allButton = new ArrayList<JButton>();
 		
 		JFrame win = new JFrame("Check Course");
@@ -103,6 +105,11 @@ public class Check {
 		win.add(buttonPanel, BorderLayout.SOUTH);
 		
 		win.setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<Course> emptyList = new ArrayList<Course>();
+		detailInfoGUI(emptyList);
 	}
 
 }
