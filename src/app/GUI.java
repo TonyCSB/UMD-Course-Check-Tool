@@ -28,6 +28,12 @@ import support.Course;
 public class GUI {
 	private Course courseDisplaying;
 	private ArrayList<Course> courseList;
+	
+	public GUI(Course course) {
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		courseList.add(course);
+		new GUI(courseList);
+	}
 
 	public GUI(ArrayList<Course> courseList) {
 		// ArrayList of all JButton objects and all JLabel objects containing course info.
@@ -121,6 +127,10 @@ public class GUI {
 		
 		Course course = courseList.get(0);
 		displayInfo(course, title, courseInfo, model);
+		
+		if (courseList.size() == 1) {
+			nextButton.setEnabled(false);
+		}
 		
 		nextButton.addActionListener(new ActionListener() {
 			@Override

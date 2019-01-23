@@ -222,6 +222,15 @@ public class Course {
 	public ArrayList<String> getSectionFilter() {
 		return sectionFilter;
 	}
+	
+	public Boolean available() {
+		for (Section section:sections) {
+			if (section.isAvailable()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public boolean equals(Object obj) {
 		if (obj == this) {

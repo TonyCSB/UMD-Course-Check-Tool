@@ -61,6 +61,10 @@ public class Section {
 		return info;
 	}
 	
+	public Boolean isAvailable() {
+		return openSeat > 0;
+	}
+	
 	public String toString() {
 		return sectionId + ", " + instructor + ", " + getSeatCounts();
 	}
