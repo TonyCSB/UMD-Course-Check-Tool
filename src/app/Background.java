@@ -32,6 +32,8 @@ public class Background {
 	}
 
 	public static void backgroundCheck(ArrayList<Course> courseList) {
+		int waitTime = 10;
+		
 		ArrayList<Course> removeCourse = new ArrayList<Course>();
 		while (!courseList.isEmpty()) {
 			for (Course course:courseList) {
@@ -52,7 +54,7 @@ public class Background {
 			}
 			
 			try {
-				TimeUnit.SECONDS.sleep(10);
+				TimeUnit.SECONDS.sleep(waitTime);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
