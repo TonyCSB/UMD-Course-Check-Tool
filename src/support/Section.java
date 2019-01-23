@@ -55,8 +55,18 @@ public class Section {
 		return course.equals(section.course) && sectionId.equals(section.sectionId);
 	}
 	
+	public String[] getInfo() {
+		String[] info = new String[] {sectionId, instructor, seatsAvailable(), Integer.toString(waitlist)};
+		
+		return info;
+	}
+	
 	public String toString() {
 		return sectionId + ", " + instructor + ", " + getSeatCounts();
+	}
+	
+	private String seatsAvailable() {
+		return openSeat + "/" + totalSeat;
 	}
 	
 	public String getSeatCounts() {

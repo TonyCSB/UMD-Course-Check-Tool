@@ -49,10 +49,12 @@ public class Course {
 
 	public void setInstructorFilter(ArrayList<String> instructorFilter) {
 		this.instructorFilter = instructorFilter;
+		update();
 	}
 
 	public void setSectionFilter(ArrayList<String> sectionFilter) {
 		this.sectionFilter = sectionFilter;
+		update();
 	}
 
 	public Course(String courseId, String semester) {
@@ -236,9 +238,15 @@ public class Course {
 
 		return checkCourseId && checkSemester;
 	}
-
-	public static void main(String[] args) {
-		System.out.println(defaultSemester());
+	
+	public String[][] getSectionsInfo() {
+		String[][] sectionsInfo = new String[sections.size()][4];
+		
+		for (int i = 0; i < sections.size(); i++) {
+			sectionsInfo[i] = sections.get(i).getInfo();
+		}
+		
+		return sectionsInfo;
 	}
 
 }

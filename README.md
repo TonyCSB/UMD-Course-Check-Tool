@@ -7,8 +7,8 @@ This tool is designed to check for course infomation and/or if any open seats av
 - [x] Finish Course/Section class
 - [x] Finish CheckCourse Module
 - [ ] Develop Background Module
-- [ ] GUI!
-- [ ] GUI!!
-- [ ] GUI!!!
+- [x] GUI!
+- [x] GUI!!
+- [x] GUI!!!
 - [ ] Write Javadoc
 - [ ] More . . .
