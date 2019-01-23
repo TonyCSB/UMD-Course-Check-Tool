@@ -11,7 +11,7 @@ import support.Course;
 public class Check {
 	
 	public static ArrayList<Course> checkFromFile() throws FileNotFoundException {
-		String filePath = "src/support/index.txt";
+		String filePath = "index.txt";
 		File inFile = new File(filePath);
 		return checkFromFile(inFile, false);
 	}

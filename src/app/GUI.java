@@ -2,10 +2,13 @@ package app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -171,7 +174,17 @@ public class GUI {
 			courseList = Check.checkFromFile();
 			new GUI(courseList);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			FileDialog dialog = new FileDialog((Frame) null, "Select File to Open");
+		    dialog.setMode(FileDialog.LOAD);
+		    dialog.setFile("*.txt");
+		    dialog.setVisible(true);
+		    File file = new File(dialog.getDirectory() + dialog.getFile());
+		    try {
+				courseList = Check.checkFromFile(file, false);
+				new GUI(courseList);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
