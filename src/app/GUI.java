@@ -33,7 +33,6 @@ public class GUI {
 		// ArrayList of all JButton objects and all JLabel objects containing course info.
 		// Used to change format altogether easily.
 		ArrayList<JButton> allButton = new ArrayList<JButton>();
-		ArrayList<JLabel> allCourseInfo = new ArrayList<JLabel>();
 		this.courseList = courseList;
 
 		// Main window
@@ -83,11 +82,7 @@ public class GUI {
 		courseInfo.setText(courseInfoText);
 		coursePanel.add(courseInfo, BorderLayout.NORTH);
 
-		allCourseInfo.add(courseInfo);
-
-		for (JLabel label:allCourseInfo) {
-			label.setFont(new Font("Microsoft Yahei UI", Font.PLAIN, 20));
-		}
+		courseInfo.setFont(new Font("Microsoft Yahei UI", Font.PLAIN, 20));
 
 		String[] columnNames = {"Section ID", "Instructor", "Seats Available", "Waitlist"};
 		@SuppressWarnings("serial")
