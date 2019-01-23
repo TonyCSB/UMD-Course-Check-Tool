@@ -11,11 +11,12 @@ import support.Course;
 public class Check {
 	
 	public static ArrayList<Course> checkFromFile() throws FileNotFoundException {
-		return checkFromFile(false);
+		String filePath = "src/support/index.txt";
+		File inFile = new File(filePath);
+		return checkFromFile(inFile, false);
 	}
 	
-	public static ArrayList<Course> checkFromFile(Boolean print) throws FileNotFoundException {
-		String filePath = "src/support/index.txt";
+	public static ArrayList<Course> checkFromFile(File inFile, Boolean print) throws FileNotFoundException {
 		String delimiter = ",";
 		String[] lineArray;
 		String semester, courseId, filter;
@@ -23,12 +24,13 @@ public class Check {
 		Course course;
 		ArrayList<String> filterList;
 
-		Scanner scanner = new Scanner(new File(filePath));
+		Scanner scanner = new Scanner(inFile);
 		semester = scanner.nextLine();
 
 		if (!Course.checkSemester(semester)) {
 			semester = null;
-			scanner = new Scanner(new File(filePath));
+			scanner.close();
+			scanner = new Scanner(inFile);
 		}
 
 		while (scanner.hasNextLine()) {
@@ -64,14 +66,6 @@ public class Check {
 		}
 		
 		return courseList;
-	}
-	
-	public static void main(String[] args) {
-		try {
-			checkFromFile(true);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
