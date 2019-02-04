@@ -21,6 +21,11 @@ public class Course {
 	private ArrayList<String> instructorFilter = null;
 	private ArrayList<String> sectionFilter = null;
 
+	public Course(Course course) {
+		courseId = course.courseId;
+		semester = course.semester;
+	}
+	
 	public Course(String courseId, String semester, Boolean update) {
 		if (semester == null) {
 			semester = defaultSemester();

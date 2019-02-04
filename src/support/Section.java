@@ -3,8 +3,7 @@ package support;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class Section {
-	private Course course;
+public class Section extends Course {
 	private String sectionId;
 	private String instructor;
 	private int openSeat;
@@ -14,7 +13,7 @@ public class Section {
 	private Boolean valid = true;
 	
 	public Section(Course course, String sectionId, Document sectionInfo) {
-		this.course = course;
+		super(course);
 		this.sectionId = sectionId;
 		
 		getAllInfo(sectionInfo);
@@ -52,7 +51,7 @@ public class Section {
 		
 		Section section = (Section) obj;
 		
-		return course.equals(section.course) && sectionId.equals(section.sectionId);
+		return sectionId.equals(section.sectionId);
 	}
 	
 	public String[] getInfo() {
@@ -75,10 +74,6 @@ public class Section {
 	
 	public String getSeatCounts() {
 		return openSeat + "/" + totalSeat + ", " + waitlist + " " + holdfile;
-	}
-
-	public Course getCourse() {
-		return course;
 	}
 
 	public String getSectionId() {
