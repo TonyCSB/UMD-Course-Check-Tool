@@ -1,0 +1,5 @@
+bs4
+requests
+configparser
+pickle
+prettytable
